@@ -1,4 +1,6 @@
 # OmadaWebsiteTests
+ 
+This is an example project how to use SpecFlow and SpecFlow+Runner to run Selenium Web Tests of Omada.com Website using different Browsers (Chrome, Firefox).
 
 ## Attension 
 In order to run SpecFlow+Runner on desired machine the Visual Studio Account have to be linked to SpecFlow+Runner account.
