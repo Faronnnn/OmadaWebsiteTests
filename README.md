@@ -12,7 +12,7 @@ Getting to know the Omada's website and figuring out what is worth testing. Afte
 ### 2 week: 
 Writing PageObjects, test scenarios and implementation of these tests. Omada's website has almost no ID's so creating selectors were quite time consuming.
 ### 3 week:
-In order to give as simple as possible ability to pick Browsers in which tests are running I decided to change adapter to SpecFlow+Runner which required to gave up NUnit. Last 2 days I had to figureout the correct configurations for the Browsers (firefox was not willing to cooperate with files downloading).
+In order to give as simple as possible ability to pick Browsers in which tests are running I decided to change adapter to SpecFlow+Runner which required to gave up NUnit. Last 2 days I had to figureout the correct configurations for the Browsers (firefox was not willing to cooperate with files downloading). Also in the last 2 day Git repository has crashed on me so I had to create a new one so there is lack of history of many commits done during the development process.
 
 ## Tests
 ### General info:
@@ -25,3 +25,7 @@ Test is checking responsiveness of contact form on the website. This form has at
 Checking if jobs offers are accessible through external website. This test simply checks if there is an offer with specific name on the website where Omada tries announces their work offers.
 
 ### Test 3:
+Checking address of Polish branch from contact page
+
+### Test 4:
+Test is trying to download some pdf guide from Omada's website. Due to many redirections in the dowload process it was pretty complicated to figure out how to set Firexfox not to show dowload dialog. Firefox recuire to point specific file type that we wish to skip showin this dialog window.
