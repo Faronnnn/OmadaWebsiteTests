@@ -90,6 +90,7 @@ namespace OmadaWebsiteTests.PageObjects.More.Company
 
             public string GetFirstNameFieldValue()
             {
+                Helpers.Helpers.Wait(_driver, _byOfFirstNameField);
                 return _firstNameField.GetAttribute("value");
             }
 

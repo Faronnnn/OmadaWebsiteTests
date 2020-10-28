@@ -64,11 +64,52 @@ namespace OmadaWebsiteTests.Hooks
                     chromeOptions.AddUserProfilePreference("download.default_directory", filesDowloadPath);
                     return new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions, TimeSpan.FromSeconds(15));
                 case "Firefox":
+                    /*
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+                    //FirefoxProfile firefoxProfile = new FirefoxProfile();
+                    //firefoxProfile.SetPreference("browser.download.folderList", 2);
+                    //firefoxProfile.SetPreference("browser.download.manager.showWhenStarting", false);
+                    //firefoxProfile.SetPreference("browser.download.dir", filesDowloadPath);
+                    //firefoxProfile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
+
                     firefoxOptions.SetPreference("browser.download.folderList", 2);
                     firefoxOptions.SetPreference("browser.download.dir", filesDowloadPath);
-                    firefoxOptions.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
+                    firefoxOptions.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;image/jpeg;application/pdf;application/octet-stream");
+                    firefoxOptions.SetPreference("browser.helperApps.neverAsk.openFile", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;image/jpeg;application/pdf;application/octet-stream");
+                    //firefoxOptions.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
+                    //firefoxOptions.SetPreference("browser.download.manager.focusWhenStarting", false);
+                    //firefoxOptions.SetPreference("browser.download.manager.showWhenStarting", false);
                     firefoxOptions.SetPreference("pdfjs.enabledCache.state", false); // new line that doesn't change shit
+                    //firefoxOptions.SetPreference("pdfjs.disabled", true);
+                    //var dr = new FirefoxDriver(firefoxProfile);*/
+                    CodePagesEncodingProvider.Instance.GetEncoding(437);
+                    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                    //Directory.CreateDirectory("C:\\Utility\\Downloads");
+
+                    FirefoxProfile profile = new FirefoxProfile();
+                    profile.SetPreference("browser.download.dir", filesDowloadPath);
+                    profile.SetPreference("browser.download.folderList", 2);
+                    profile.SetPreference("browser.download.useDownloadDir", true);
+                    profile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;image/jpeg;application/pdf;application/octet-stream");
+                    //profile.SetPreference("browser.download.manager.showWhenStarting", false);
+                    profile.SetPreference("browser.helperApps.neverAsk.openFile", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;image/jpeg;application/pdf;application/octet-stream");
+                    profile.SetPreference("browser.helperApps.alwaysAsk.force", false);
+                    profile.SetPreference("browser.download.manager.useWindow", false);
+                    profile.SetPreference("browser.download.manager.focusWhenStarting", false);
+                    profile.SetPreference("browser.download.manager.showAlertOnComplete", false);
+                    profile.SetPreference("browser.download.manager.closeWhenDone", true);
+                    profile.SetPreference("pdfjs.enabledCache.state", false);
+                    profile.SetPreference("plugin.disable_full_page_plugin_for_types", "application/pdf");
+                    profile.SetPreference("pref.downloads.disable_button.edit_actions", false);
+                    profile.SetPreference("browser.download.manager.alertOnEXEOpen", false);
+                    profile.SetPreference("browser.download.manager.closeWhenDone", true);
+                    profile.SetPreference("browser.download.manager.showAlertOnComplete", false);
+                    profile.SetPreference("browser.download.manager.useWindow", false);
+                    profile.SetPreference("services.sync.prefs.sync.browser.download.manager.showWhenStarting", false);
+                    profile.SetPreference("pdfjs.disabled", true);
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.Profile = profile;
                     return new FirefoxDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), firefoxOptions, TimeSpan.FromSeconds(15));
                 case string browser: 
                     throw new NotSupportedException($"{browser} is not a supported browser");
